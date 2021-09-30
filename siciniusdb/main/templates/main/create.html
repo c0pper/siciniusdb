@@ -1,10 +1,16 @@
 {% extends 'main/base.html' %}
+
 {% block title %}Aggiungi personaggio{% endblock %}
 
 {% block content %}
-<form method="post" action="/">
-  {% csrf_token %}
-  {{form.as_p}}
-  <button type="submit", name="save">Aggiungi</button>
+Aggiungi
+<h1>Create a Post </h1>
+<form action="" method="POST">
+{% csrf_token %}
+Title: <input type="text" name="fname"/><br/>
+Content: <br/>
+<textarea cols="35" rows="8" name="lname">
+</textarea><br/>
+<input type="submit" value="Post"/>
 </form>
 {% endblock %}

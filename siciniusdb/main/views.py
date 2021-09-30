@@ -13,14 +13,29 @@ def home(response):
 
 def create(response):
     if response.method == "POST":
-        form = CreateNewPerson(response.POST)
+        fname = response.POST.get("fname")
+        lname = response.POST.get("lname")
+        person = Person(
+            fname=fname,
+            lname=lname
+        )
+        person.save()
 
-        if form.is_valid():
-            fname = form.cleaned_data["fname"]
-            p = Person(fname=fname)
-            p.save()
+        return HttpResponseRedirect("/")
 
-        return HttpResponseRedirect("main/home.html")
     else:
-        form = CreateNewPerson()
-    return render(response, "main/create.html", {"form": form})
+        return render(response, 'main/create.html')
+# def create(response):
+#     if response.method == "POST":
+#         print(response.POST)
+#         form = CreateNewPerson(response.POST)
+#
+#         if form.is_valid():
+#             fname = form.cleaned_data["fname"]
+#             p = Person(fname=fname)
+#             p.save()
+#
+#         return HttpResponseRedirect("main/home.html")
+#     else:
+#         form = CreateNewPerson()
+#     return render(response, "main/create.html", {"form": form})
