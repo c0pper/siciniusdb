@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Sottomissioni - {{user}}{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  {% for p in user.person.all %}
+    <p>{{p.fname}}</p>
+  {% endfor %}
+{% else %}
+<p>Devi essere registrato al municipio di Sicignano per visualizzare le tue entries nel database. Accedi <a href="/login">qui</a> </p>
+{% endif %}
+{% endblock %}

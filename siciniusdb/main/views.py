@@ -23,22 +23,13 @@ def create(response):
                 lname=response.POST.get("lname")
             )
             person.save()
+            response.user.person.add(person)
 
             return HttpResponseRedirect("/")
     else:
         form = CreateNewPerson()
     return render(response, 'main/create.html', {"form": form})
-# def create(response):
-#     if response.method == "POST":
-#         print(response.POST)
-#         form = CreateNewPerson(response.POST)
-#
-#         if form.is_valid():
-#             fname = form.cleaned_data["fname"]
-#             p = Person(fname=fname)
-#             p.save()
-#
-#         return HttpResponseRedirect("main/home.html")
-#     else:
-#         form = CreateNewPerson()
-#     return render(response, "main/create.html", {"form": form})
+
+def user_subs(response):
+    user = response.user
+    return render(response, "main/user_subs.html", {})
