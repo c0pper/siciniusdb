@@ -7,24 +7,27 @@ from .forms import CreateNewPerson
 
 
 def home(response):
+    user = response.user
+    print(user)
     people = Person.objects.all()
-    return render(response, "main/home.html", {"people": people})
+    return render(response, "main/home.html", {"people": people, "user": user})
 
 
 def create(response):
+
     if response.method == "POST":
-        fname = response.POST.get("fname")
-        lname = response.POST.get("lname")
-        person = Person(
-            fname=fname,
-            lname=lname
-        )
-        person.save()
+        form = CreateNewPerson(response.POST)
+        if form.is_valid():
+            person = Person(
+                fname=response.POST.get("fname"),
+                lname=response.POST.get("lname")
+            )
+            person.save()
 
-        return HttpResponseRedirect("/")
-
+            return HttpResponseRedirect("/")
     else:
-        return render(response, 'main/create.html')
+        form = CreateNewPerson()
+    return render(response, 'main/create.html', {"form": form})
 # def create(response):
 #     if response.method == "POST":
 #         print(response.POST)

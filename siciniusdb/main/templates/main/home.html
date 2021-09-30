@@ -1,7 +1,8 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-<h1>HHH</h1>
+<h1>Ciao {{user}}</h1>
+<a href="/create">Add</a>
 {% for p in people %}
 <ul>
     <li>{{p.fname}} {{p.lname}}</li>
