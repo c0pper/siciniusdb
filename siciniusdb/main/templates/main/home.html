@@ -1,0 +1,10 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<h1>HHH</h1>
+{% for p in people %}
+<ul>
+    <li>{{p.fname}}</li>
+</ul>
+{% endfor %}
+{% endblock %}
