@@ -3,11 +3,11 @@
 {% block title %}Login{% endblock %}
 {% load crispy_forms_tags%}
 
-{% block content %}
+{% block login %}
   <form method="post" class="form-group">
     {% csrf_token %}
     {{form|crispy}}
-    <p>Registati <a href="/register">qui</a></p>
+    <p>Non hai un utente? Registati <a href="/register">qui</a></p>
     <button type="submit" class="btn btn-success">Login</button>
   </form>
 {% endblock %}

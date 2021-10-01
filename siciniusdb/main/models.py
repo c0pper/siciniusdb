@@ -1,5 +1,8 @@
+import pytz
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
+from datetime import datetime
 
 # Create your models here.
 class Person(models.Model):
@@ -11,7 +14,7 @@ class Person(models.Model):
     city = models.CharField(max_length=30)
     province = models.CharField(max_length=2)
     job = models.CharField(max_length=30)
-    added_date = models.CharField(max_length=30)
+    added_date = models.DateTimeField(default=timezone.now())
     added_by = models.CharField(max_length=30)
 
     def __str__(self):

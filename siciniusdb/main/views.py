@@ -20,7 +20,12 @@ def create(response):
         if form.is_valid():
             person = Person(
                 fname=response.POST.get("fname"),
-                lname=response.POST.get("lname")
+                lname=response.POST.get("lname"),
+                birth_date=response.POST.get("birth_date"),
+                phone=response.POST.get("phone"),
+                city=response.POST.get("city"),
+                province=response.POST.get("province"),
+                job=response.POST.get("job")
             )
             person.save()
             response.user.person.add(person)
